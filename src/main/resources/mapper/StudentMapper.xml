@@ -5,7 +5,11 @@
 
 <mapper namespace="com.fangjie.mybatis.dao.StudentDao">
 
-    <select id="getAllStudent" resultType="com.fangjie.mybatis.bean.Student">
+    <select id="getAllStudent" resultType="student">
         SELECT id,name FROM student
+    </select>
+
+    <select id="getById" resultType="student" parameterType="int">
+        SELECT id,name FROM student WHERE id=#{id}
     </select>
 </mapper>

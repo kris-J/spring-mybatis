@@ -12,4 +12,6 @@ import java.util.List;
 public interface StudentDao {
 
     List<Student> getAllStudent();
+
+    Student getById(Integer studentId);
 }

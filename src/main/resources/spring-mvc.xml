@@ -2,8 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- properties配置 -->
     <context:property-placeholder location="classpath:properties/db_config.properties"/>
@@ -60,13 +61,17 @@
     <!-- 声明式事务管理 -->
     <!--定义事物管理器，由spring管理事务 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <!--支持注解驱动的事务管理，指定事务管理器 -->
     <tx:annotation-driven/>
+    <mvc:annotation-driven/>
 
     <context:component-scan base-package="com.fangjie.mybatis"/>
+
+    <!-- 静态资源 -->
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
 
     <!-- 默认的视图解析器 在上边的解析错误时使用 (默认使用html)- -->
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">

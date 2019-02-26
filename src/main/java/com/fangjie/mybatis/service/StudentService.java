@@ -21,4 +21,9 @@ public class StudentService {
     public List<Student> getAllStudent() {
         return studentDao.getAllStudent();
     }
+
+    public Student getById(Integer studentId) {
+        return studentDao.getById(studentId);
+    }
+
 }
