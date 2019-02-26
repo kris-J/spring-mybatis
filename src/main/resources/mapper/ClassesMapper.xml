@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fangjie.mybatis.dao.ClassesDao">
+
+    <select id="getAllClasses" resultMap="ClassesResultMap">
+        SELECT id,name,teacher_id FROM class
+    </select>
+
+    <resultMap id="ClassesResultMap" type="classes">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <!-- 关联查询teacher信息，跨xml -->
+        <association property="teacher" column="teacher_id" javaType="teacher" select="com.fangjie.mybatis.dao.TeacherDao.getById"/>
+        <!-- 关联查询student信息，跨xml -->
+        <collection property="students" column="id" ofType="student" select="com.fangjie.mybatis.dao.StudentDao.getByClassesId"/>
+    </resultMap>
+</mapper>

@@ -1,6 +1,8 @@
 package com.fangjie.mybatis.controller;
 
+import com.fangjie.mybatis.bean.Classes;
 import com.fangjie.mybatis.bean.Student;
+import com.fangjie.mybatis.service.ClassesService;
 import com.fangjie.mybatis.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,9 @@ public class IndexController {
 
     @Autowired
     StudentService studentService;
+
+    @Autowired
+    ClassesService classesService;
 
     /**
      * 学生列表
@@ -46,5 +51,18 @@ public class IndexController {
     public Student info(@RequestParam("studentId") Integer studentId) {
         Student student = studentService.getById(studentId);
         return student;
+    }
+
+    /**
+     * 课程列表
+     *
+     * @param model
+     * @return
+     */
+    @RequestMapping("/classes")
+    public String listClasses(Model model) {
+        List<Classes> allClasses = classesService.getAllClasses();
+        model.addAttribute("classes", allClasses);
+        return "index/classes";
     }
 }

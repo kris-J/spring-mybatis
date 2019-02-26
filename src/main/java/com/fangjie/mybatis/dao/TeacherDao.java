@@ -11,5 +11,7 @@ import java.util.List;
  */
 public interface TeacherDao {
 
-    List<Teacher> getAllTeacher();
+    //    List<Teacher> getAllTeacher();
+    Teacher getById(Integer teacherId);
 }
+
