@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/index")
-public class IndexController {
+public class IndexController extends BaseController{
 
     @Autowired
     StudentService studentService;
